@@ -15,6 +15,7 @@ public class UserDTO {
     private String email;
     private String phone;
     private String birthDate;
+    private String image;
     private String role;
     private String ssn;
 
@@ -48,6 +49,10 @@ public class UserDTO {
 
     public String getBirthDate() {
         return birthDate;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public String getRole() {

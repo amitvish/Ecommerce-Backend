@@ -38,7 +38,10 @@ public class UserService {
             List<User> users = response.getUsers().stream().map(this::convertToEntity).toList();
             logger.info("Fetched {} users from external API. Saving to DB...", users.size());
 
-            userRepository.saveAll(users);
+            // userRepository.saveAll(users);
+            for (User user : users) {
+                userRepository.save(user);
+            }
             logger.info("Users saved successfully in H2 database.");
 
         } else {
@@ -54,8 +57,8 @@ public class UserService {
         logger.debug("Converting UserDTO to User entity: {}", userDTO);
 
         return new User(userDTO.getId(), userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAge(),
-                userDTO.getGender(), userDTO.getEmail(), userDTO.getPhone(), userDTO.getBirthDate(), userDTO.getRole(),
-                userDTO.getSsn());
+                userDTO.getGender(), userDTO.getEmail(), userDTO.getPhone(), userDTO.getBirthDate(), userDTO.getImage(),
+                userDTO.getRole(), userDTO.getSsn());
     }
 
     public UserResponseDTO fetchUsers() {

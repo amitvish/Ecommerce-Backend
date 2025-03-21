@@ -35,9 +35,9 @@ class UserControllerTest {
     void setUp() {
         baseUrl = "http://localhost:" + port + "/api/users";
         userRepository.save(new User(1L, "John", "Doe", 30, "Male", "john.doe@example.com", "+1234567890", "1993-05-15",
-                "ADMIN", "123-45-6789"));
+                "https://dummyjson.com/icon/michaelw/128", "ADMIN", "123-45-6789"));
         userRepository.save(new User(2L, "Jane", "Smith", 25, "Female", "jane.smith@example.com", "+9876543210",
-                "1998-10-20", "CUSTOMER", "987-65-4321"));
+                "1998-10-20", "https://dummyjson.com/icon/michaelw/128", "CUSTOMER", "987-65-4321"));
     }
 
     @Test
