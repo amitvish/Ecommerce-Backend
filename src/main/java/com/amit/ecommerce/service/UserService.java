@@ -21,10 +21,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final RestTemplate restTemplate;
+    private final ConfigService configService;
 
-    public UserService(UserRepository userRepository, RestTemplate restTemplate) {
+    public UserService(UserRepository userRepository, RestTemplate restTemplate, ConfigService configService) {
         this.userRepository = userRepository;
         this.restTemplate = restTemplate;
+        this.configService = configService;
     }
 
     @CircuitBreaker(name = "userService", fallbackMethod = "fallBackLoadUsers")
@@ -62,7 +64,7 @@ public class UserService {
     }
 
     public UserResponseDTO fetchUsers() {
-        String url = "https://dummyjson.com/users";
+        String url = configService.getUserApiUrl();
         logger.info("Calling external API: {}", url);
 
         UserResponseDTO response = restTemplate.getForObject(url, UserResponseDTO.class);
